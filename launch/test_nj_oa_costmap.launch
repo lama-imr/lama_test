@@ -29,7 +29,7 @@
 				output="screen" />
 	</group>
 
-	<node name="map_node" pkg="lama_interfaces" type="map_node.py" />
+	<node name="map_node" pkg="lama_interfaces" type="map_node" />
 
 	<node name="costmap" pkg="local_map" type="local_map" output="screen" >
 	</node>

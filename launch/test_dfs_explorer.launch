@@ -22,7 +22,7 @@
 	<node name="rviz" pkg="rviz" type="rviz"
 			args="-d $(find lama_test)/worlds/dfs_explorer.rviz" />
 
-	<node name="map_node" pkg="lama_interfaces" type="map_node.py" />
+	<node name="map_node" pkg="lama_interfaces" type="map_node" />
 
 	<group if="$(arg costmap)">
 		<node name="costmap" pkg="local_map" type="local_map"

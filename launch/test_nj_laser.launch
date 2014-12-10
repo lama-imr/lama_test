@@ -16,7 +16,7 @@
 	<node name="rviz" pkg="rviz" type="rviz"
 			args="-d $(find lama_test)/worlds/nj_laser.rviz" />
 
-	<node name="map_node" pkg="lama_interfaces" type="map_node.py" />
+	<node name="map_node" pkg="lama_interfaces" type="map_node" />
 
 	<node name="jockey" pkg="nj_laser" type="nj_laser" output="screen">
 		<param name="frontier_width" value="1" />

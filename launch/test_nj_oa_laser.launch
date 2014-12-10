@@ -10,7 +10,7 @@
 	<node name="rviz" pkg="rviz" type="rviz"
 			args="-d $(find lama_test)/worlds/dfs_explorer.rviz" />
 
-	<node name="map_node" pkg="lama_interfaces" type="map_node.py" />
+	<node name="map_node" pkg="lama_interfaces" type="map_node" />
 
 	<node name="jockey" pkg="nj_oa_laser" type="nj_oa_laser" output="screen">
 		<param name="robot_radius" value="0.45" />
