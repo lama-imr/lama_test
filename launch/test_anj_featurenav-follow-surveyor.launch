@@ -1,0 +1,37 @@
+<launch>
+
+  <!-- <param name="spacenav/full_scale" type="double" value="200" /> -->
+
+  <!-- <remap from="spacenav/twist" to="mybot/cmd_vel" /> -->
+  <!-- <remap from="spacenav/twist" to="husky/cmd_vel" /> -->
+  <remap from="anj_featurenav/camera/image_raw" to="surveyor/surveyor/left/image_raw" />
+  <remap from="anj_featurenav/odom" to="surveyor/odom" />
+  <remap from="anj_featurenav/cmd_vel" to="surveyor/cmd_vel" />
+
+	<remap from="cmd_vel" to="surveyor/cmd_vel" />
+	<remap from="image" to="surveyor/surveyor/left/image_raw" />
+
+	<node name="surveyor" pkg="surveyor" type="surveyor_node" output="screen" >
+		<param name="vl_correction" value="1.6" />
+	</node>
+
+	<node name="image_view" pkg="image_view" type="image_view" >
+	</node>
+
+  <include file="$(find lama_interfaces)/launch/init_lama.launch" />
+
+  <node name="anj_featurenav" pkg="anj_featurenav" type="anj_featurenav" output="screen">
+    <param name="feature_detector/threshold" value="40" />
+    <param name="descriptor_matcher/type" value="FlannBased" />
+    <param name="forward_velocity" value="0.2" />
+    <param name="kp" value="10.0" />
+    <param name="min_angular_velocity" value="1" />
+    <param name="max_angular_velocity" value="11" />
+  </node>
+
+  <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_follow.py" output="screen" args="5" >
+  </node>
+
+  <!-- <include file="$(find spacenav_node)/launch/classic.launch"  /> -->
+
+</launch>
