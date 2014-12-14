@@ -16,6 +16,8 @@
   <node name="map_node" pkg="lama_interfaces" type="map_node" output="screen" />
 
   <node name="anj_featurenav" pkg="anj_featurenav" type="anj_featurenav" output="screen">
+    <param name="feature_detector/threshold" value="50" />
+    <param name="descriptor_matcher/type" value="FlannBased" />
   </node>
 
   <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_follow.py" output="screen" >
