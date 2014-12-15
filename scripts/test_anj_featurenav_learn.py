@@ -43,14 +43,14 @@ def add_edge_to_map(descriptor_link):
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) > 1:
-        learning_time = float(sys.argv[1])
-    else:
-        learning_time = 5
     rospy.init_node('test_anj_featurenav')
+    rospy.loginfo('sys.argv: {}'.format(sys.argv)) # debug
+    try:
+        learning_time = float(sys.argv[1])
+    except (IndexError, ValueError):
+        learning_time = 5
 
-    client = actionlib.SimpleActionClient('anj_featurenav_learner',
-                                          LearnAction)
+    client = actionlib.SimpleActionClient('anj_featurenav_learner', LearnAction)
     client.wait_for_server()
 
     learn_goal = LearnGoal()

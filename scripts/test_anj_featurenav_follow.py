@@ -11,9 +11,9 @@ _edge_id = 1
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) > 1:
+    try:
         edge_id = int(sys.argv[1])
-    else:
+    except (IndexError, ValueError):
         edge_id = _edge_id
     rospy.init_node('test_anj_featurenav')
 

@@ -19,7 +19,7 @@
     <param name="descriptor_matcher/type" value="FlannBased" />
   </node>
 
-  <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_learn.py" output="screen" >
+  <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_learn.py" args="20" output="screen" >
   </node>
 
   <include file="$(find spacenav_node)/launch/classic.launch"  />

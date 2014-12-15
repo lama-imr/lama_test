@@ -3,10 +3,6 @@
 
   <param name="use_sim_time" value="true" />
 
-  <param name="spacenav/full_scale" type="double" value="200" />
-
-  <!-- <remap from="spacenav/twist" to="mybot/cmd_vel" /> -->
-  <remap from="spacenav/twist" to="husky/cmd_vel" />
   <remap from="/anj_featurenav/camera/image_raw" to="/husky/camera1/image_raw" />
   <remap from="/anj_featurenav/odom" to="/odom" />
   <remap from="/anj_featurenav/cmd_vel" to="/husky/cmd_vel" />
@@ -18,12 +14,14 @@
   <node name="anj_featurenav" pkg="anj_featurenav" type="anj_featurenav" output="screen">
     <param name="feature_detector/threshold" value="50" />
     <param name="descriptor_matcher/type" value="FlannBased" />
+    <param name="forward_velocity" value="0.2" />
+    <param name="kp" value="0.01" />
+    <param name="min_angular_velocity" value="0" />
+    <param name="max_angular_velocity" value="5" />
   </node>
 
-  <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_follow.py" output="screen" >
+  <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_follow.py" args="1" output="screen" >
   </node>
-
-  <include file="$(find spacenav_node)/launch/classic.launch"  />
 
 </launch>
 
