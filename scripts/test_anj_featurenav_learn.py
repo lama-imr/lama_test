@@ -54,7 +54,7 @@ if __name__ == '__main__':
     client.wait_for_server()
 
     learn_goal = LearnGoal()
-    learn_goal.action = learn_goal.START_LEARN
+    learn_goal.action = learn_goal.LEARN
     client.send_goal(learn_goal)
 
     rospy.loginfo('Learning started for {} s'.format(learning_time))

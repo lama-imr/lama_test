@@ -17,6 +17,7 @@
   <node name="anj_featurenav" pkg="anj_featurenav" type="anj_featurenav" output="screen">
     <param name="feature_detector/threshold" value="50" />
     <param name="descriptor_matcher/type" value="FlannBased" />
+    <param name="max_segment_length" value="1.0" />
   </node>
 
   <node name="test_anj_featurenav" pkg="lama_test" type="test_anj_featurenav_learn.py" args="20" output="screen" >
