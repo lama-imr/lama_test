@@ -116,10 +116,12 @@ catkin_package(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  scripts/random_walker.py
+  scripts/test_goto_crossing.py
+  scripts/test_nj_oa.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS lama_test lama_test_node
@@ -136,11 +138,32 @@ catkin_package(
 # )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+install(FILES
+  launch/test_dfs_explorer.launch
+  launch/test_goto_crossing.launch
+  launch/test_nj_costmap.launch
+  launch/test_nj_laser.launch
+  launch/test_nj_oa_costmap.launch
+  launch/test_nj_oa_laser.launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
+install(FILES
+  worlds/dfs_explorer.rviz
+  worlds/goto_crossing.rviz
+  worlds/map.png
+  worlds/nj_costmap.rviz
+  worlds/nj_laser.rviz
+  worlds/stage-001.world
+  worlds/stage-010.world
+  worlds/stage-090.world
+  worlds/stage-180.world
+  worlds/stage-270.world
+  worlds/stage-360.world
+  worlds/test_goto_crossing.world
+  worlds/test-nj_oa_costmap.rviz
+  worlds/white.png
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds
+)
 
 #############
 ## Testing ##
