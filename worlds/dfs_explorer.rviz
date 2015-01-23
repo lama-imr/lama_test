@@ -131,7 +131,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.05
       Style: Flat Squares
-      Topic: /navigating_jockey/place_profile
+      Topic: /navigating_jockey/place_profile_cloud
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -159,16 +159,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 13.6811
+      Distance: 17.1616
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 2.79485
-        Y: 2.47662
-        Z: 0.294397
+        X: 2.50877
+        Y: 3.228
+        Z: 0.377781
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.4604
@@ -193,4 +193,4 @@ Window Geometry:
     collapsed: false
   Width: 1213
   X: -9
-  Y: 36
+  Y: 28
