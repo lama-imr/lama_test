@@ -35,13 +35,13 @@
 	</node>
 
 	<node name="jockey" pkg="nj_costmap" type="nj_costmap" output="screen" >
-		<param name="robot_radius" value="0.45" />
+		<param name="frontier_width" value="0.45" />
 		<param name="long_distance" value="1.5" />
 		<param name="turnrate_collide" value="0.4" />
 		<param name="max_vel" value="0.6" />
 		<param name="vel_close_obstacle" value="0.2" />
 		<param name="turnrate_factor" value="0.8" />
-		<param name="odom_frame" value="odom" />
+		<param name="odom_frame" value="robot0" />
 	</node>
 
 	<node name="service_caller" pkg="lama_test" type="test_nj_oa.py"  output="screen" />

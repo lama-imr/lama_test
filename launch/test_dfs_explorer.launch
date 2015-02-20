@@ -17,9 +17,7 @@
 	<node name="stage" pkg="stage_ros" type="stageros"
 			args="$(arg model)" />
 
-	<!--
-	  <param name="use_sim_time" value="true" />
-	  -->
+	<param name="use_sim_time" value="true" />
 
 	<node name="rviz" pkg="rviz" type="rviz"
 			args="-d $(find lama_test)/worlds/dfs_explorer.rviz" />
@@ -29,7 +27,7 @@
 		<remap from="navigating_jockey/local_costmap" to="/costmap/local_map" />
 		<remap from="navigating_jockey/cmd_vel" to="/cmd_vel" />
 		<remap from="navigating_jockey/base_scan" to="/base_scan" />
-		<remap from="local_costmap" to="/costmap/local_map" />
+        <remap from="localizing_jockey/local_costmap" to="/costmap/local_map" />
 
 		<node name="costmap" pkg="local_map" type="local_map"
 				output="screen" launch-prefix="">

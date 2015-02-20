@@ -5,11 +5,11 @@ import rospy
 import actionlib
 
 from lama_interfaces.core_interface import MapAgentInterface
-from lama_interfaces.msg import LamaObject
 from lama_interfaces.srv import ActOnMap
 from lama_interfaces.srv import ActOnMapRequest
 from lama_jockeys.msg import LearnAction
 from lama_jockeys.msg import LearnGoal
+from lama_msgs.msg import LamaObject
 
 
 def add_edge_to_map(descriptor_link):
@@ -44,7 +44,6 @@ def add_edge_to_map(descriptor_link):
 if __name__ == '__main__':
     import sys
     rospy.init_node('test_anj_featurenav')
-    rospy.loginfo('sys.argv: {}'.format(sys.argv)) # debug
     try:
         learning_time = float(sys.argv[1])
     except (IndexError, ValueError):
@@ -63,7 +62,7 @@ if __name__ == '__main__':
     rospy.sleep(learning_time)
 
     learn_goal = LearnGoal()
-    learn_goal.action = learn_goal.STOP_LEARN
+    learn_goal.action = learn_goal.STOP
     client.send_goal_and_wait(learn_goal)
     learn_result = client.get_result()
     if not learn_result:
