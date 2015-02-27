@@ -9,6 +9,7 @@
 	<arg name="launch_explorer" default="true" />
 
 	<arg name="max_frontier_angle" default="1.3" />
+	<arg name="range_cutoff" default="0" />
 
 	<!-- END OF THE CONFIGURATION PART -->
 
@@ -57,19 +58,21 @@
 			<param name="odom_frame" value="base_link" />
 			<param name="frontier_width" value="0.5" />
 			<param name="kp_v" value="0.1" />
-			<param name="kp_w" value="0.5" />
+			<param name="kp_w" value="1" />
 			<param name="ki_v" value="0" />
 			<param name="ki_w" value="0" />
 			<param name="min_linear_velocity" value="0.2" />
 			<param name="min_angular_velocity" value="0.5" />
 			<param name="dtheta_force_left" value="0.17" />
 			<param name="robot_radius" value="0.3" />
+			<param name="range_cutoff" value="$(arg range_cutoff)" />
 		</node>
 
 		<node name="localizing_jockey" pkg="lj_costmap" type="lj_costmap"
 				output="screen" >
 			<param name="crossing_interface_name" value="/localizing_jockey_server_crossing_descriptor" />
 			<param name="frontier_width" value="0.5" />
+			<param name="range_cutoff" value="$(arg range_cutoff)" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 			<param name="dissimilarity_server_name" value="/dissimilarity_server/compute_dissimilarity" />
 		</node>
@@ -90,14 +93,14 @@
 			<param name="ki_w" value="0" />
 			<param name="min_linear_velocity" value="0.2" />
 			<param name="min_angular_velocity" value="0.2" />
-			<param name="max_frontier_distance" value="3.5" />
+			<param name="range_cutoff" value="3.5" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 		</node>
 
 		<node name="localizing_jockey" pkg="lj_laser_heading" type="lj_laser_heading"
 				output="screen" >
 			<param name="frontier_width" value="0.5" />
-			<param name="max_frontier_distance" value="3.5" />
+			<param name="range_cutoff" value="3.5" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 			<param name="dissimilarity_server_name" value="/dissimilarity_server/compute_dissimilarity" />
 		</node>
@@ -106,9 +109,9 @@
 	<node name="crossing_escaper" pkg="nj_escape_crossing" type="nj_escape_crossing"
 			output="screen" >
 		<param name="kp_v" value="0.05" />
-		<param name="kp_w" value="0.1" />
-		<param name="min_linear_velocity" value="0.2" />
-		<param name="min_angular_velocity" value="0.2" />
+		<param name="kp_w" value="0.5" />
+		<param name="min_linear_velocity" value="0.1" />
+		<param name="min_angular_velocity" value="0.5" />
 		<param name="crossing_interface_name" value="/localizing_jockey_server_crossing_descriptor" />
 		<param name="exit_angle_interface_name" value="dfs_explorer_exit_angle" />
 		<remap from="crossing_escaper/odometry" to="/odom" />

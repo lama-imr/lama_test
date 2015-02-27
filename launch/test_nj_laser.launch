@@ -20,7 +20,7 @@
 
 	<node name="jockey" pkg="nj_laser" type="nj_laser" output="screen">
 		<param name="frontier_width" value="1" />
-		<param name="max_frontier_distance" value="3" />
+		<param name="range_cutoff" value="3" />
 		<param name="robot_radius" value="0.45" />
 	</node>
 
