@@ -8,12 +8,26 @@
 	<!-- Launch nj_costmap if launch_explorer is true, don't launch it otherwise. -->
 	<arg name="launch_explorer" default="true" />
 
+    <!-- Save everything as rosbag? -->
+	<arg name="record" default="false" />
+
 	<arg name="max_frontier_angle" default="1.3" />
+    <arg name="frontier_width" default="0.5" />
 	<arg name="range_cutoff" default="0" />
+
+    <arg name="min_linear_velocity" value="0.1" />
+    <arg name="max_linear_velocity" value="1" />
+    <arg name="min_angular_velocity" value="0.1" />
+    <arg name="max_angular_velocity" value="2" />
 
 	<!-- END OF THE CONFIGURATION PART -->
 
 	<include file="$(find lama_interfaces)/launch/init_lama.launch" />
+
+	<group if="$(arg record)" >
+		<node name="rosbag" pkg="rosbag" type="record"
+			args="-a -o lama_test" />
+	</group>
 
 	<node name="stage" pkg="stage_ros" type="stageros"
 			args="$(arg model)" />
@@ -56,13 +70,13 @@
 				output="screen" >
 			<param name="navigating_jockey_server_name" value="/navigating_jockey_server" />
 			<param name="odom_frame" value="base_link" />
-			<param name="frontier_width" value="0.5" />
+			<param name="frontier_width" value="$(arg frontier_width)" />
 			<param name="kp_v" value="0.1" />
 			<param name="kp_w" value="1" />
 			<param name="ki_v" value="0" />
 			<param name="ki_w" value="0" />
-			<param name="min_linear_velocity" value="0.2" />
-			<param name="min_angular_velocity" value="0.5" />
+			<param name="min_linear_velocity" value="$(arg min_linear_velocity)" />
+            <param name="min_angular_velocity" value="$(arg min_angular_velocity)" />
 			<param name="dtheta_force_left" value="0.17" />
 			<param name="robot_radius" value="0.3" />
 			<param name="range_cutoff" value="$(arg range_cutoff)" />
@@ -71,7 +85,7 @@
 		<node name="localizing_jockey" pkg="lj_costmap" type="lj_costmap"
 				output="screen" >
 			<param name="crossing_interface_name" value="/localizing_jockey_server_crossing_descriptor" />
-			<param name="frontier_width" value="0.5" />
+            <param name="frontier_width" value="$(arg frontier_width)" />
 			<param name="range_cutoff" value="$(arg range_cutoff)" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 			<param name="dissimilarity_server_name" value="/dissimilarity_server/compute_dissimilarity" />
@@ -86,21 +100,21 @@
 		<node name="navigating_jockey" pkg="nj_laser" type="nj_laser"
 				output="screen">
 			<param name="navigating_jockey_server_name" value="/navigating_jockey_server" />
-			<param name="frontier_width" value="0.5" />
+            <param name="frontier_width" value="$(arg frontier_width)" />
 			<param name="kp_v" value="0.05" />
 			<param name="kp_w" value="0.1" />
 			<param name="ki_v" value="0" />
 			<param name="ki_w" value="0" />
-			<param name="min_linear_velocity" value="0.2" />
-			<param name="min_angular_velocity" value="0.2" />
-			<param name="range_cutoff" value="3.5" />
+            <param name="min_linear_velocity" value="$(arg min_linear_velocity)" />
+            <param name="min_angular_velocity" value="$(arg min_angular_velocity)" />
+            <param name="range_cutoff" value="$(arg range_cutoff)" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 		</node>
 
 		<node name="localizing_jockey" pkg="lj_laser_heading" type="lj_laser_heading"
 				output="screen" >
-			<param name="frontier_width" value="0.5" />
-			<param name="range_cutoff" value="3.5" />
+            <param name="frontier_width" value="$(arg frontier_width)" />
+            <param name="range_cutoff" value="$(arg range_cutoff)" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 			<param name="dissimilarity_server_name" value="/dissimilarity_server/compute_dissimilarity" />
 		</node>
@@ -110,8 +124,8 @@
 			output="screen" >
 		<param name="kp_v" value="0.05" />
 		<param name="kp_w" value="0.5" />
-		<param name="min_linear_velocity" value="0.1" />
-		<param name="min_angular_velocity" value="0.5" />
+        <param name="min_linear_velocity" value="$(arg min_linear_velocity)" />
+        <param name="min_angular_velocity" value="$(arg min_angular_velocity)" />
 		<param name="crossing_interface_name" value="/localizing_jockey_server_crossing_descriptor" />
 		<param name="exit_angle_interface_name" value="dfs_explorer_exit_angle" />
 		<remap from="crossing_escaper/odometry" to="/odom" />
