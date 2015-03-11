@@ -144,6 +144,7 @@
 			<param name="localizing_jockey_name" value="/localizing_jockey_server" />
 			<param name="escape_jockey_name" value="/crossing_escaper_jockey" />
 			<param name="crossing_interface" value="/localizing_jockey_server_crossing_descriptor" />
+			<param name="dissimilarity_threshold" value="0.045" />
 		</node>
 	</group>
 
