@@ -30,7 +30,7 @@
   <depend>nj_laser</depend>
   <depend>nj_oa_costmap</depend>
   <depend>nj_oa_laser</depend>
-  <depend>pm_mcc</depend>
+  <depend>place_matcher_mcc</depend>
   <depend>rviz</depend>
 
 
