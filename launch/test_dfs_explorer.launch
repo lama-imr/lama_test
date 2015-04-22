@@ -89,6 +89,7 @@
 			<param name="range_cutoff" value="$(arg range_cutoff)" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 			<param name="dissimilarity_server_name" value="/dissimilarity_server/compute_dissimilarity" />
+            <param name="localize_service" value="/localize_in_vertex_server/compute_dissimilarity" />
 		</node>
 	</group>
 
@@ -117,6 +118,7 @@
             <param name="range_cutoff" value="$(arg range_cutoff)" />
 			<param name="max_frontier_angle" value ="$(arg max_frontier_angle)" />
 			<param name="dissimilarity_server_name" value="/dissimilarity_server/compute_dissimilarity" />
+			<param name="localize_service" value="/localize_in_vertex_server/compute_dissimilarity" />
 		</node>
 	</group>
 
@@ -137,6 +139,10 @@
 			output="screen" >
 	</node>
 	
+    <node name="localize_in_vertex_server" pkg="place_matcher_csm" type="place_matcher_csm"
+        output="screen" >
+    </node>
+
 	<group if="$(arg launch_explorer)">
 		<node name="explorer" pkg="dfs_explorer" type="explorer.py"
 				output="screen">
@@ -144,6 +150,7 @@
 			<param name="localizing_jockey_name" value="/localizing_jockey_server" />
 			<param name="escape_jockey_name" value="/crossing_escaper_jockey" />
 			<param name="crossing_interface" value="/localizing_jockey_server_crossing_descriptor" />
+			<param name="place_profile_interface" value="/localizing_jockey_server_place_profile" />
 			<param name="dissimilarity_threshold" value="0.04" />
 		</node>
 	</group>
